@@ -1,0 +1,48 @@
+.menu-list{
+    padding-left: 30px;
+    padding-top: 20px;
+}
+.home-section{
+    float:left;
+    width: 100%;
+}
+.section{
+    margin-left: 10%;
+    float:left;
+}
+.photo{
+    padding-right: 5px;
+}
+input.ng-invalid {
+    background-color: pink;
+}
+input.ng-valid {
+    background-color: lightgreen;
+}
+
+._listProduct{
+	margin-top: 80px;
+}
+
+div.col-md-2, div.col-md-6{
+	padding: 5px;
+}
+
+/* table, th , td  { */
+/*   border: 1px solid grey; */
+/*   border-collapse: collapse; */
+/*   padding: 5px; */
+/* } */
+/* table tr:nth-child(odd) { */
+/*   background-color: #f1f1f1; */
+/* } */
+/* table tr:nth-child(even) { */
+/*   background-color: #ffffff; */
+/* } */
+
+
+@media (min-width: 768px){
+	.form-horizontal .control-label {  
+    text-align: left !important;
+}
+}
