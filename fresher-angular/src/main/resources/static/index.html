@@ -13,22 +13,49 @@
    
 </head>
 <body>
-<div class="_main">
-	<div class="col-md-2">
-		<div class="home-section">
-		    <ul class="menu-list">
-		        <li><a href="#/users">Users</a></li>
-		        <li><a href="#/roles">Roles</a></li>
-		        <li><a href="#/main">Github Service example</a></li>
-		        <li><a href="#/mainstore">Store Online Application</a></li>
-		    </ul>
-		</div>
-	</div>
-	<div class="col-md-10">
-		<h2 align="center">Angular JS Application</h2>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">        
+        <li><a href="#/users">Users</a></li>
+        <li><a href="#/roles">Roles</a></li>
+        <li><a href="#/main">Github Service example</a></li>
+        <li class="active"><a href="#/mainstore">Store Online Application</a></li>
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      
+    </div>
+    <div class="col-sm-8 text-left"> 
+      <h2 align="center">Angular JS Application</h2>
 		<div ng-view></div>
-	</div>
+    </div>
+    <div class="col-sm-2 sidenav">
+      
+    </div>
+  </div>
 </div>
+
+<footer class="container-fluid text-center">
+	<h2>AngularJS Final</h2>
+  <p>Designed by Lê Tuấn Anh</p>
+  <div class="copyright">&copy;  2017 All Rights Reserved</div>
+</footer>
 
 
 <script src="/fresherangular/libs/angular-1.4.12/angular.js"></script>
