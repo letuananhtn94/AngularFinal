@@ -1,11 +1,18 @@
+var app = angular.module('myApp');
 
-app.controller("MainStoreController", function($scope, $http) {
+app.controller("MainStoreController", function($scope, productService, $http) {
 	
-	$scope.messape ='';
-	$scope.hideDialog = function(){
-		$scope.message = message;
-		$scope.dialogIsHidden = true;
-	}
+	$scope.searchAll =  function(){
+		productService.getAll().then(onSucces,onError);
+    };
+    
+    var onSucces = function(data){
+    	$scope.products = data;
+    };
+    
+    var onError = function(error){
+    	$scope.error = "Could not find data";    
+    };
 	
 	$scope.product ={
 		name:"",
@@ -19,10 +26,8 @@ app.controller("MainStoreController", function($scope, $http) {
 	$scope.products = [];
 	
 	
-	$scope.addProduct = function(){
-		console.log($scope.product);
-		$http.post("http://localhost:9000/fresherangular/product/add", $scope.product)
-    	.then(addProductSucces, addProductError);
+	$scope.addProduct = function(){		
+		productService.addProduct($scope.product).then(addProductSucces, addProductError);
 		
 	};
 	var addProductSucces = function(res){
@@ -35,48 +40,37 @@ app.controller("MainStoreController", function($scope, $http) {
 		console.log(err);
 	};
 		
-	$scope.increaseAvailable = function(index, id) {
-		
-		$http.get("http://localhost:9000/fresherangular/product/increase/"+ id)
+	$scope.increaseAvailable = function(id) {
+		productService.increaseAvailable(id)
     	.then(function(res){
     		console.log(res);
-    		$scope.products[index].available = res.data.available;
-    	});
-    	
+    		$scope.searchAll();
+    	});   	
     }
 	
     $scope.decreaseAvailable = function(index, id) {
     	
 		if($scope.products[index].available >= 1){
-			$http.get("http://localhost:9000/fresherangular/product/decrease/" + id)
+			productService.decreaseAvailable(id)
 	    	.then(function(res){
-	    		$scope.products[index].available = res.data.available;
-	    	});
+	    		console.log(res);
+	    		$scope.searchAll();
+	    	});   	
 		}
     }
     
     $scope.deleteProduct = function(id) {
-    	    	
-    	$http.get("http://localhost:9000/fresherangular/product/delete/"+ id)
-    	.then(function(res){
-    		console.log(res);
-    		$scope.searchAll();
-    	});
+    	if (confirm("Are you sure?"))
+        {
+    		productService.deleteProduct(id)
+        	.then(function(res){
+        		console.log(res);
+        		$scope.searchAll();
+        	});
+        }    	
+    	
     }
-    
-    $scope.searchAll = function(){
-    	$http.get("http://localhost:9000/fresherangular/product/list")
-    	.then(onSucces, onError);
-    };
-    
-    var onSucces = function(response){
-    	$scope.products =response.data;
-    };
-    
-    var onError = function(error){
-    	$scope.error = "Could not find data";    
-    };
-        
+            
 });
 
 

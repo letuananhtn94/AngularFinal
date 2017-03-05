@@ -1,6 +1,6 @@
+var app = angular.module('myApp');
 
-
-app.controller("StoreDetailController", function($scope, $http, $routeParams) {
+app.controller("StoreDetailController", function($scope,productService, $http, $routeParams) {
 	
 	var id = $routeParams.id;
 	
@@ -13,9 +13,9 @@ app.controller("StoreDetailController", function($scope, $http, $routeParams) {
 		available:""
 	};
 	
-	$http.get("http://localhost:9000/fresherangular/product/get/"+ id)
-	.then(function(res){		
-		$scope.product = res.data;
+	productService.detailProduct(id)
+	.then(function(data){		
+		$scope.product = data;
 	});					
     
 });
